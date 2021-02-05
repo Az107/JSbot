@@ -1,5 +1,7 @@
 import * as Discord from "discord.js"
-const TOKEN : string = "ODA3MjE1MjU3NzcyNDkwNzky.YB0vyg.TyyY7SvJVjw9zJg5-e0caepVSCQ";
-const client = new Discord.Client()
 
+
+const TOKEN : string | undefined = process.env.TOKEN;
+if (!TOKEN ) process.exit();
+const client = new Discord.Client()
 client.login(TOKEN);
