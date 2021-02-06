@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var discord_js_1 = require("discord.js");
 var engine_1 = require("./engine");
-var TOKEN = "ODA3MjE1MjU3NzcyNDkwNzky.YB0vyg.FLtBwzh1M1wo-OZV5tE9LvIx-kM";
+var TOKEN = process.env.TOKEN;
 if (!TOKEN)
     process.exit();
 var engine = new engine_1.Engine();

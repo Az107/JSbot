@@ -2,7 +2,7 @@ import {Client} from "discord.js"
 import { Engine } from "./engine";
 
 
-const TOKEN : string | undefined = "ODA3MjE1MjU3NzcyNDkwNzky.YB0vyg.FLtBwzh1M1wo-OZV5tE9LvIx-kM";
+const TOKEN : string | undefined = process.env.TOKEN;
 if (!TOKEN ) process.exit();
 const engine : Engine = new Engine();
 
