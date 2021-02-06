@@ -12,7 +12,8 @@ test("simple engine test 2",() => {
     expect(a).toBe(false);
 });
 
-test("simple engine test 3",() => {
-    let a = eng.Exec("() => {return 'jsbot'}");
-    expect(a).toBe(true);
+test("bannana test",() => {
+    let a = eng.Exec("('b' + 'a' + + 'a' + 'a').toLowerCase()");
+    expect(a).toBe("banana");
 });
+
