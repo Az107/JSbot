@@ -2,7 +2,7 @@ import {Client} from "discord.js"
 import { Engine } from "./engine";
 
 
-const TOKEN : string | undefined = process.env.TOKEN;
+const TOKEN : string | undefined = "ODA3MjE1MjU3NzcyNDkwNzky.YB0vyg.FLtBwzh1M1wo-OZV5tE9LvIx-kM";
 if (!TOKEN ) process.exit();
 const engine : Engine = new Engine();
 
@@ -13,10 +13,12 @@ client.on('ready', () => {
   });
   
   client.on('message', msg => {
-    if (msg.content === 'ping') {
-      msg.reply('Pong!');
-    }else{
-        msg.reply(engine.Exec(msg.content));
+    if (msg.author != client.user){
+        if (msg.content === 'ping') {
+          msg.reply('Pong!');
+        }else{
+            msg.reply(engine.Exec(msg.content) || "error");
+        }
     }
   });
 

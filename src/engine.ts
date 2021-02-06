@@ -12,7 +12,12 @@ export class Engine {
      */
     public Exec(script : string) : any  {
         var result : any = null;
-        result = this.EVM.run(script);
+        try{
+            result = this.EVM.run(script);
+
+        }catch( error ){
+            result = null;
+        }
         return result ;
 
     }

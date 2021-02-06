@@ -17,7 +17,12 @@ var Engine = /** @class */ (function () {
      */
     Engine.prototype.Exec = function (script) {
         var result = null;
-        result = this.EVM.run(script);
+        try {
+            result = this.EVM.run(script);
+        }
+        catch (error) {
+            result = null;
+        }
         return result;
     };
     return Engine;
