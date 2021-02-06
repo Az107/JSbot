@@ -11,7 +11,7 @@ var status = new Status_1.Status();
 var client = new discord_js_1.Client();
 client.on('ready', function () {
     console.log("Logged in as " + client.user.tag + "!");
-    //status.Start();
+    status.Start();
 });
 client.on('message', function (msg) {
     if (msg.author != client.user) {
@@ -23,5 +23,4 @@ client.on('message', function (msg) {
         }
     }
 });
-console.log("loading...");
 client.login(TOKEN);

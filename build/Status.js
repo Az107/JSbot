@@ -23,13 +23,20 @@ exports.Status = void 0;
 var http = __importStar(require("http"));
 var Status = /** @class */ (function () {
     function Status() {
+        var _this = this;
+        this.okMessage = "ONLINE ✅";
         this.Server = http.createServer(function (req, res) {
-            res.writeHead(200);
-            res.write("ONLINE ✅");
+            res.writeHead(200, {
+                'Content-Type': 'text/html; charset=utf-8',
+                'Content-Length': Buffer.byteLength(_this.okMessage, 'utf8')
+            });
+            //res.write("<head><meta charset='utf-8'></head>");   
+            res.write(_this.okMessage, "utf-8");
+            res.end();
         });
     }
     Status.prototype.Start = function () {
-        this.Server.listen(process.env.PORT);
+        this.Server.listen(process.env.PORT || 8080);
     };
     return Status;
 }());

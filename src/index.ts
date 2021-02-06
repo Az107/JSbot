@@ -13,7 +13,7 @@ const client = new Client()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user!.tag}!`);
-    //status.Start();
+    status.Start();
   });
   
   client.on('message', msg => {
