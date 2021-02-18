@@ -20,15 +20,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Engine = void 0;
-var vm = __importStar(require("vm2"));
-var Engine = /** @class */ (function () {
-    function Engine() {
+const vm = __importStar(require("vm2"));
+class Engine {
+    constructor() {
         this.EVM = new vm.VM();
     }
     /**
      * Exec
      */
-    Engine.prototype.Exec = function (script) {
+    Exec(script) {
         var result = null;
         try {
             result = this.EVM.run(script);
@@ -37,7 +37,6 @@ var Engine = /** @class */ (function () {
             result = null;
         }
         return result;
-    };
-    return Engine;
-}());
+    }
+}
 exports.Engine = Engine;

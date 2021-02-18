@@ -20,24 +20,25 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Status = void 0;
-var http = __importStar(require("http"));
-var Status = /** @class */ (function () {
-    function Status() {
-        var _this = this;
-        this.okMessage = "ONLINE ✅";
-        this.Server = http.createServer(function (req, res) {
+const http = __importStar(require("http"));
+class Status {
+    constructor() {
+        this.message = {
+            ok: "ONLINE ✅",
+            err: "ERROR ❌"
+        };
+        this.Server = http.createServer((req, res) => {
             res.writeHead(200, {
                 'Content-Type': 'text/html; charset=utf-8',
-                'Content-Length': Buffer.byteLength(_this.okMessage, 'utf8')
+                'Content-Length': Buffer.byteLength(this.message.ok, 'utf8')
             });
             //res.write("<head><meta charset='utf-8'></head>");   
-            res.write(_this.okMessage, "utf-8");
+            res.write(this.message.ok, "utf-8");
             res.end();
         });
     }
-    Status.prototype.Start = function () {
+    Start() {
         this.Server.listen(process.env.PORT || 8080);
-    };
-    return Status;
-}());
+    }
+}
 exports.Status = Status;

@@ -8,7 +8,7 @@ const engine : Engine = new Engine();
 const status : Status = new Status();
 
 
-
+const prefix = "!js"
 const client = new Client()
 
 client.on('ready', () => {
@@ -17,12 +17,11 @@ client.on('ready', () => {
   });
   
   client.on('message', msg => {
-    if (msg.author != client.user){
-        if (msg.content === 'ping') {
-          msg.reply('Pong!');
-        }else{
-            msg.reply(engine.Exec(msg.content) || "error");
-        }
+    if (msg.content.startsWith(prefix)){
+      if (msg.author != client.user){
+        const args = msg.content.slice(prefix.length).trim();
+        msg.reply(engine.Exec(args) || "error");
+      }
     }
   });
 
