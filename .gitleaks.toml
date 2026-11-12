@@ -1,0 +1,19 @@
+# gitleaks — configuracion del repo.
+#
+# Uso local (arbol de trabajo):
+#   gitleaks dir . --redact
+# Uso en el hook de pre-commit (solo lo que se va a commitear):
+#   gitleaks git . --staged --redact
+#
+# En 2021 se commiteo un token de Discord en este repo; ya esta rotado y sigue en el
+# historial publico. No se reescribe el historial: el objetivo es que no entre otro.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Artefactos generados y dependencias: no son codigo fuente del repo"
+paths = [
+  '''node_modules/''',
+  '''build/''',
+  '''dist/''',
+]

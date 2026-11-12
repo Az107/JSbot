@@ -119,3 +119,6 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 build/*
+# Artefactos compilados: los genera `tsc` (outDir=./build) y no se versionan.
+# Ya hubo un token commiteado en build/index.js en 2021: el codigo fuente vive en src/.
+build/

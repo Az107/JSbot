@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Hook de pre-commit: aborta el commit si lo que se va a commitear contiene un secreto.
+#
+# Instalar (una vez por clon):
+#   cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+#
+# Requiere gitleaks (v8+) en PATH. Si no está, el hook avisa y deja pasar el commit: no
+# queremos dejar un repo sin poder commitear por una herramienta que falta.
+set -uo pipefail
+
+GITLEAKS="${GITLEAKS_BIN:-$(command -v gitleaks || true)}"
+if [ -z "${GITLEAKS}" ] || [ ! -x "${GITLEAKS}" ]; then
+  echo "pre-commit: gitleaks no encontrado (permito el commit). Instala gitleaks o exporta GITLEAKS_BIN=<ruta>." >&2
+  exit 0
+fi
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT" || exit 0
+
+if "$GITLEAKS" git . --staged --redact --no-banner; then
+  exit 0
+fi
+echo "pre-commit: gitleaks ha encontrado algo en el diff staged. Commit ABORTADO." >&2
+echo "Corrigelo (pasa el valor a una variable de entorno) o, si es un falso positivo," >&2
+echo "añade una allowlist justificada en .gitleaks.toml." >&2
+exit 1
